@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="card">
+        <mat-card>
+            <form [formGroup]="currency">
+            <h1 style="color: white;margin-top: 1rem;">Currency </h1>
+            <div>
+                <mat-form-field>
+                    <mat-label style="color: white;">Select Currency Code</mat-label>
+                    <mat-select>
+                    <mat-option *ngFor="let code of codes" (click) = "currencyCode(code.value)" [value]="code.value">
+                        {{code.viewValue}}
+                    </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div>
+                
+                <mat-form-field>
+                    <mat-label style="color: white;">Quantity</mat-label>
+                    <input matInput placeholder="Please enter the amount..." formControlName="quantity" [(ngModel)]="curr.quantity" autocomplete="off" required>
+                </mat-form-field>
+                <span style="font-size: 15px;margin-top: 10px;">
+                    <mat-error *ngIf="f.quantity.touched && f.quantity.errors">
+                        <mat-error *ngIf="f.quantity.errors.required">
+                            Quantity is required</mat-error>
+                            
+                    </mat-error>
+                </span>
+            
+            </div>
+            <div style=" margin: 1rem 0;">
+                <img src="assets/icon/cur.png" style="border-radius: 5px;height: 3rem; width: 3rem;"> 
+            </div>
+
+            <div *ngIf="res">
+                <h1 style="color: white; ">INR</h1>
+                <label style="margin: 0.5rem; padding: 0.5rem 1rem; color: white; border: solid 1px white;">{{result}}</label>
+            </div>
+           
+            <div >
+                <mat-card-actions >
+                    <button style="margin: 1rem 0; font-size: 25px;font-weight: bold;color: whitesmoke;" [disabled]="!currency.valid"
+                        mat-button type="submit" (click)="onSubmit()">Submit</button>
+                </mat-card-actions>
+            </div>
+        </form>
+        
+        </mat-card>
+    </div>
+</div>
